@@ -46,6 +46,11 @@ return {
 
       sources = {
         default = { 'lsp', 'path', 'snippets' },
+        providers = {
+          lsp = {
+            async = true,
+          },
+        },
       },
 
       snippets = { preset = 'luasnip' },

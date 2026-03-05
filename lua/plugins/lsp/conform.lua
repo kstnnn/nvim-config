@@ -25,6 +25,9 @@ return {
           }
         end
       end,
+      format_after_save = {
+        lsp_format = 'fallback',
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         kotlin = { 'ktlint' },
