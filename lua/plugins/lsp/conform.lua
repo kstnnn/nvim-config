@@ -5,10 +5,10 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>F',
         function() require('conform').format { async = true, lsp_format = 'fallback' } end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = '[F]ormat',
       },
     },
     ---@module 'conform'
@@ -25,12 +25,9 @@ return {
           }
         end
       end,
-      format_after_save = {
-        lsp_format = 'fallback',
-      },
       formatters_by_ft = {
         lua = { 'stylua' },
-        kotlin = { 'ktlint' },
+        java = { 'google-java-format' },
       },
     },
   },

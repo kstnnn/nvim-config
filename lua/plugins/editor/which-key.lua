@@ -13,7 +13,6 @@ return {
         { '<leader>f', group = '[F]ind', mode = { 'n', 'v' } },
         { '<leader>g', group = '[G]rep', mode = { 'n', 'v' } },
         { '<leader>u', group = '[U]i', mode = { 'n', 'v' } },
-        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { 'gr', group = 'LSP Actions', mode = { 'n' } },

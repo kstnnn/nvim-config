@@ -68,6 +68,27 @@ return {
 
         stylua = {},
 
+        yamlls = {
+          settings = {
+            yaml = {
+              schemaStore = {
+                enable = false,
+                url = '',
+              },
+              schemas = require('schemastore').yaml.schemas {
+                extra = {
+                  {
+                    description = 'Liquibase Master Changelog',
+                    fileMatch = 'db.changelog-master.yaml',
+                    name = 'liquibase-3.2.json',
+                    url = 'https://json.schemastore.org/liquibase-3.2.json',
+                  },
+                },
+              },
+            },
+          },
+        },
+
         lua_ls = {
           on_init = function(client)
             if client.workspace_folders then
