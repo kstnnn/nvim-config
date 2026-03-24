@@ -2,7 +2,11 @@ return {
   {
     'nvim-java/nvim-java',
     config = function()
-      require('java').setup()
+      require('java').setup {
+        jdk = {
+          auto_install = false,
+        },
+      }
       vim.lsp.enable 'jdtls'
 
       local function on_attach_jdtls(bufnr)

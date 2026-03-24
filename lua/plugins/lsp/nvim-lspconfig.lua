@@ -64,8 +64,13 @@ return {
       ---@type table<string, vim.lsp.Config>
       local servers = {
 
-        kotlin_lsp = {},
-
+        hyprls = {},
+        rust_analyzer = {},
+        -- dockerls = {
+        --   cmd = { 'docker-compose-langserver', '--stdio' },
+        --   filetypes = { 'yaml.docker-compose' },
+        --   root_markers = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' },
+        -- },
         stylua = {},
 
         yamlls = {
@@ -75,13 +80,30 @@ return {
                 enable = false,
                 url = '',
               },
-              schemas = require('schemastore').yaml.schemas {
-                extra = {
-                  {
-                    description = 'Liquibase Master Changelog',
-                    fileMatch = 'db.changelog-master.yaml',
-                    name = 'liquibase-3.2.json',
-                    url = 'https://json.schemastore.org/liquibase-3.2.json',
+              schemas = {
+                require('schemastore').yaml.schemas {
+                  extra = {
+                    {
+                      description = 'Liquibase Master Changelog',
+                      fileMatch = 'db.changelog-master.yaml',
+                      name = 'liquibase-3.2.json',
+                      url = 'https://json.schemastore.org/liquibase-3.2.json',
+                    },
+                    {
+                      description = 'Docker Compose',
+                      fileMatch = {
+                        'docker-compose.yaml',
+                        'docker-compose.yml',
+                        'compose.yaml',
+                        'compose.yml',
+                        'docker-compose.*.yaml',
+                        'docker-compose.*.yml',
+                        'compose.*.yaml',
+                        'compose.*.yml',
+                      },
+                      name = 'compose-spec.json',
+                      url = 'https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json',
+                    },
                   },
                 },
               },
