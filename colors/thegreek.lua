@@ -214,9 +214,11 @@ set(0, 'SnacksPickerSelectedSign', { fg = colors.bg, bg = colors.orange })
 set(0, 'SnacksPickerHeader', { fg = colors.orange, bg = colors.bg_alt, bold = true })
 set(0, 'SnacksPickerInput', { fg = colors.fg, bg = colors.bg_alt })
 set(0, 'SnacksPickerPrompt', { fg = colors.orange, bg = colors.bg_alt })
+set(0, 'SnacksPickerPathHidden', { fg = colors.orange, bg = colors.blue })
+set(0, 'SnacksPickerListCursorLine', { bg = colors.bg })
 
 -- Picker preview
-set(0, 'SnacksPickerPreview', { fg = colors.fg, bg = colors.bg_alt })
+set(0, 'SnacksPickerPreview', { fg = colors.fg, bg = colors.bg })
 set(0, 'SnacksPickerPreviewBorder', { fg = colors.comment, bg = colors.bg_alt })
 
 -- Notifier

@@ -13,6 +13,9 @@ return {
     },
     picker = {
       enabled = true,
+      layout = {
+        preset = 'default',
+      },
     },
     quickfile = { enabled = true },
     scope = { enabled = true },
