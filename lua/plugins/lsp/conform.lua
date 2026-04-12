@@ -25,9 +25,30 @@ return {
           }
         end
       end,
+      format_after_save = function(bufnr)
+        -- Format after saving for Java files to maintain consistency
+        if vim.bo[bufnr].filetype == 'java' then return {
+          timeout_ms = 500,
+          lsp_format = 'fallback',
+        } end
+        return nil
+      end,
       formatters_by_ft = {
         lua = { 'stylua' },
         java = { 'google-java-format' },
+        sql = { 'sqlfluff' },
+      },
+      format_options = {
+        sql = { timeout_ms = 3000 },
+      },
+      formatters = {
+        sqlfluff = {
+          prepend_args = {
+            '--dialect',
+            'postgres',
+          },
+          require_cwd = false,
+        },
       },
     },
   },

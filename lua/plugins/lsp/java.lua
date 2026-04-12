@@ -5,12 +5,13 @@ return {
       require('java').setup {
         jdk = {
           auto_install = false,
+          version = '25',
         },
       }
       vim.lsp.enable 'jdtls'
 
       local function on_attach_jdtls(bufnr)
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Move file with context', buffer = bufnr })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'actions menu', buffer = bufnr })
 
         vim.keymap.set(
           'n',
