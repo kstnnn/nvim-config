@@ -12,7 +12,13 @@ return {
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {
+        notification = {
+          window = {
+            align = 'top',
+          },
+        },
+      } },
 
       'saghen/blink.cmp',
     },
@@ -61,6 +67,14 @@ return {
         end,
       })
 
+      local vue_node_modules = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules'
+      local vue_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_node_modules .. '/@vue/language-server',
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+      }
+
       ---@type table<string, vim.lsp.Config>
       local servers = {
 
@@ -68,6 +82,26 @@ return {
         rust_analyzer = {},
         stylua = {},
 
+        vue_ls = {},
+
+        vtsls = {
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
+          settings = {
+            typescript = {
+              tsserver = {
+                pluginPaths = { vue_node_modules },
+              },
+            },
+            vtsls = {
+              autoUseWorkspaceTsdk = true,
+              tsserver = {
+                globalPlugins = {
+                  vue_plugin,
+                },
+              },
+            },
+          },
+        },
         yamlls = {
           settings = {
             yaml = {
