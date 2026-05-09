@@ -8,6 +8,29 @@ return {
           version = '25',
         },
       }
+
+      local ok, spring_boot_util = pcall(require, 'spring_boot.util')
+      if ok then
+        spring_boot_util.execute_command = function(client, command, param, callback)
+          local co
+          if not callback then
+            co = coroutine.running()
+            if co then
+              callback = function(err, resp)
+                coroutine.resume(co, err, resp)
+              end
+            end
+          end
+
+          client:request('workspace/executeCommand', {
+            command = command,
+            arguments = param,
+          }, callback, nil)
+
+          if co then return coroutine.yield() end
+        end
+      end
+
       vim.lsp.enable 'jdtls'
 
       local function on_attach_jdtls(bufnr)
