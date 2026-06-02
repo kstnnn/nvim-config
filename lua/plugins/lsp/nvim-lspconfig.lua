@@ -81,9 +81,7 @@ return {
         hyprls = {},
         rust_analyzer = {},
         stylua = {},
-
         vue_ls = {},
-
         vtsls = {
           filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
           settings = {

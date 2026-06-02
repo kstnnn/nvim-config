@@ -36,19 +36,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         java = { 'google-java-format' },
-        sql = { 'sqlfluff' },
-      },
-      format_options = {
-        sql = { timeout_ms = 3000 },
-      },
-      formatters = {
-        sqlfluff = {
-          prepend_args = {
-            '--dialect',
-            'postgres',
-          },
-          require_cwd = false,
-        },
+        sql = { 'sql-formatter' },
       },
     },
   },

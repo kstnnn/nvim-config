@@ -33,10 +33,10 @@ vim.diagnostic.config {
 }
 
 local function show_documentation()
-  vim.lsp.buf.hover {
-    focus_id = vim.lsp.protocol.Methods.textDocument_hover,
-    close_events = { 'InsertCharPre', 'BufHidden', 'BufLeave' },
-  }
+  vim.lsp.buf.hover()
+  -- focus_id = vim.lsp.protocol.Methods.textDocument_hover,
+  -- close_events = { 'InsertCharPre', 'BufHidden', 'BufLeave' },
+  -- }
 end
 
 local function hover_scroll_or(key)
@@ -60,8 +60,8 @@ end
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>s', show_documentation, { desc = 'Show documentation' })
-vim.keymap.set('n', 'j', hover_scroll_or('j'), { desc = 'Scroll hover or move down', expr = true })
-vim.keymap.set('n', 'k', hover_scroll_or('k'), { desc = 'Scroll hover or move up', expr = true })
+vim.keymap.set('n', 'j', hover_scroll_or 'j', { desc = 'Scroll hover or move down', expr = true })
+vim.keymap.set('n', 'k', hover_scroll_or 'k', { desc = 'Scroll hover or move up', expr = true })
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
