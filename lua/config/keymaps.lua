@@ -12,32 +12,7 @@ end
 
 vim.keymap.set('n', '<Esc>', close_hover_or_clear_search, { desc = 'Close hover or clear search' })
 
-vim.diagnostic.config {
-  update_in_insert = false,
-  severity_sort = true,
-  float = { border = 'rounded', source = 'if_many' },
-  underline = { severity = { min = vim.diagnostic.severity.WARN } },
-
-  virtual_text = true,
-  virtual_lines = false,
-
-  jump = {
-    on_jump = function(_, bufnr)
-      vim.diagnostic.open_float {
-        bufnr = bufnr,
-        scope = 'cursor',
-        focus = false,
-      }
-    end,
-  },
-}
-
-local function show_documentation()
-  vim.lsp.buf.hover()
-  -- focus_id = vim.lsp.protocol.Methods.textDocument_hover,
-  -- close_events = { 'InsertCharPre', 'BufHidden', 'BufLeave' },
-  -- }
-end
+local function show_documentation() vim.lsp.buf.hover() end
 
 local function hover_scroll_or(key)
   return function()
