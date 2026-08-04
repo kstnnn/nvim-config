@@ -6,4 +6,5 @@ require('lazy').setup {
   { import = 'plugins.tools' },
   { import = 'plugins.other' },
   rocks = { enabled = false },
+  git = { filter = false },
 }
