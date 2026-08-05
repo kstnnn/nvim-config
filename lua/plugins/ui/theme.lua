@@ -3,7 +3,13 @@ return {
     'wnkz/monoglow.nvim',
     lazy = false,
     priority = 1000,
-    config = function() vim.cmd.colorscheme 'monoglow' end,
+    opts = {
+      on_colors = function(colors) colors.glow = '#fafafa' end,
+    },
+    config = function(_, opts)
+      require('monoglow').setup(opts)
+      vim.cmd.colorscheme 'monoglow'
+    end,
   },
   -- {
   --   'bjarneo/aether.nvim',
