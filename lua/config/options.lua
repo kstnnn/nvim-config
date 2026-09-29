@@ -1,3 +1,4 @@
+require("config.remote_clipboard").setup()
 vim.o.number = true
 vim.o.relativenumber = true
 
