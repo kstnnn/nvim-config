@@ -15,7 +15,7 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true, yaml = true }
+        local disable_filetypes = { c = true, cpp = true, yaml = true, java = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -25,17 +25,8 @@ return {
           }
         end
       end,
-      format_after_save = function(bufnr)
-        -- Format after saving for Java files to maintain consistency
-        if vim.bo[bufnr].filetype == 'java' then return {
-          timeout_ms = 500,
-          lsp_format = 'fallback',
-        } end
-        return nil
-      end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        java = { 'google-java-format' },
         sql = { 'sql-formatter' },
       },
     },

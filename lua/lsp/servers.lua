@@ -13,6 +13,29 @@ return {
   rust_analyzer = {},
   vue_ls = {},
 
+  jdtls = {
+    -- jdtls never advertises textDocument/formatting statically. It registers it via
+    -- dynamic registration, so it stays invisible unless the client opts in below --
+    -- and even then jdtls only sends the registration from syncCapabilitiesToSettings(),
+    -- which runs on workspace/didChangeConfiguration. Hence the on_attach nudge.
+    capabilities = {
+      textDocument = {
+        formatting = { dynamicRegistration = true },
+        rangeFormatting = { dynamicRegistration = true },
+      },
+    },
+    on_attach = function(client)
+      if client.jdtls_formatting_synced then return end
+      client.jdtls_formatting_synced = true
+      client:notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+    end,
+    settings = {
+      java = {
+        format = { enabled = true, insertSpaces = true, tabSize = 4 },
+      },
+    },
+  },
+
   vtsls = {
     filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
     settings = {
