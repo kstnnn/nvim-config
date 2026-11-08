@@ -9,15 +9,10 @@ local vue_plugin = {
 
 ---@type table<string, vim.lsp.Config>
 return {
-  hyprls = {},
   rust_analyzer = {},
   vue_ls = {},
 
   jdtls = {
-    -- jdtls never advertises textDocument/formatting statically. It registers it via
-    -- dynamic registration, so it stays invisible unless the client opts in below --
-    -- and even then jdtls only sends the registration from syncCapabilitiesToSettings(),
-    -- which runs on workspace/didChangeConfiguration. Hence the on_attach nudge.
     capabilities = {
       textDocument = {
         formatting = { dynamicRegistration = true },
